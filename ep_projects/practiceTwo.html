@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>enjoyprogramming.com</title>
+    <link rel="icon" type="image/x-icon" href="./assets/EP_logo_new.jpeg" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="./ep.css">
+    <style>
+        /* Style for Contact Button */
+        .contact-btn {
+            background-color: #4caf4f60;
+            color: white;
+            padding: 10px 25px;
+            margin: 8px auto;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-btn:hover,
+        .contact-btn:focus {
+            background-color: #45a0494f;
+            transform: translateY(5px);
+            outline: none;
+
+        }
+
+        /* Style for Collapsible Content */
+        .collapsible-content {
+            padding: 0 18px;
+            width: 20%;
+            max-height: 0;
+            overflow: hidden;
+            background-color: #0e030327;
+            color: white;
+           
+            margin-left: 40%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .collapsible-content.active {
+            max-height: 1000px;
+            padding: 18px;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 600px) {
+            .contact-btn {
+                width: 80%;
+                font-size: 14px;
+                padding: 8px 20px;
+            }
+        }
+
+        @media screen and (min-width: 601px) and (max-width: 1024px) {
+            .contact-btn {
+                width: 60%;
+                font-size: 15px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <img src="data:image/jpeg;base64,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" style="height: 100px; width: 110px; border-radius: 50%; float: left" alt="" />
+    <h1 class="home-and-menu-title align-top gradient-type" style="
+        opacity: 0.8;
+        background-position: 13.2558% 41.9528%;
+        float: left;
+        margin-top: 20px;
+      ">
+        &emsp;Enjoy Programming <!--add there shoud be contact button side of enjoy programming with collapse button -->
+    </h1>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h3 class="gradient-type" style="
+        margin-right: 40px;
+        margin-top: 150px;
+        font-family: Playwrite DE Grund, cursive;
+        font-optical-sizing: auto;
+        font-style: normal;
+      ">
+        Welcome To The World Of Information Technology
+    </h3>
+    <p class="welcome__subtitle">
+        A genuine IT training institute with professional Industrial Trainers
+    </p>
+
+    <!-- Add hamburger menu icon -->
+    <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <!-- Contact Button -->
+    <button class="contact-btn">Contact </button>
+
+    <!-- Collapsible Content -->
+    <div class="collapsible-content">
+        <p>Email: supportdesk@enjoyprogramming.info</p>
+
+        <p>Phone: +91 72 7575 7670</p>
+    </div>
+    <div class="sidebar" id="menu-icon">
+        <svg class="svg--source" width="0" height="0" aria-hidden="true">
+            <!-- SVG symbol definitions remain unchanged -->
+            <svg class="svg--source" width="0" height="0" aria-hidden="true">
+                <symbol id="svg--twitter" viewbox="0 -7 15 30">
+                    <path
+                        d="M15.36 3.434c-0.542 0.241-1.124 0.402-1.735 0.476 0.624-0.374 1.103-0.966 1.328-1.67-0.583 0.346-1.23 0.598-1.917 0.733-0.551-0.587-1.336-0.954-2.205-0.954-1.668 0-3.020 1.352-3.020 3.019 0 0.237 0.026 0.467 0.078 0.688-2.51-0.126-4.735-1.328-6.224-3.155-0.261 0.446-0.41 0.965-0.41 1.518 0 1.048 0.534 1.972 1.344 2.514-0.495-0.016-0.961-0.151-1.368-0.378 0 0.013 0 0.025 0 0.038 0 1.463 1.042 2.683 2.422 2.962-0.253 0.069-0.52 0.106-0.796 0.106-0.194 0-0.383-0.018-0.568-0.054 0.384 1.2 1.5 2.073 2.821 2.097-1.034 0.81-2.335 1.293-3.75 1.293-0.244 0-0.484-0.014-0.72-0.042 1.336 0.857 2.923 1.357 4.63 1.357 5.554 0 8.592-4.602 8.592-8.593 0-0.13-0.002-0.261-0.009-0.39 0.59-0.426 1.102-0.958 1.507-1.563z" />
+                </symbol>
+
+                <symbol id="svg--google" viewbox="-13 -13 72 72">
+                    <path d="M48,22h-5v-5h-4v5h-5v4h5v5h4v-5h5 M16,21v6.24h8.72c-0.67,3.76-3.93,6.5-8.72,6.5c-5.28,0-9.57-4.47-9.57-9.75
+    s4.29-9.74,9.57-9.74c2.38,0,4.51,0.82,6.19,2.42v0.01l4.51-4.51C23.93,9.59,20.32,8,16,8C7.16,8,0,15.16,0,24s7.16,16,16,16
+    c9.24,0,15.36-6.5,15.36-15.64c0-1.17-0.11-2.29-0.31-3.36C31.05,21,16,21,16,21z" />
+                </symbol>
+
+                <symbol id="svg--facebook" viewbox="0 -7 16 30">
+                    <path
+                        d="M12 3.303h-2.285c-0.27 0-0.572 0.355-0.572 0.831v1.65h2.857v2.352h-2.857v7.064h-2.698v-7.063h-2.446v-2.353h2.446v-1.384c0-1.985 1.378-3.6 3.269-3.6h2.286v2.503z" />
+                </symbol>
+
+                <symbol xmlns="http://www.w3.org/2000/svg" id="svg--instagram" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                </symbol>
+
+                <symbol xmlns="http://www.w3.org/2000/svg" id="svg--whatsapp" viewBox="0 0 16 16">
+                    <path
+                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                </symbol>
+
+                <symbol xmlns="http://www.w3.org/2000/svg" id="svg--linkedin" viewBox="0 0 16 16">
+                    <path
+                        d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+                </symbol>
+            </svg>
+        </svg>
+        <!-- ===== SIDEBAR SECTION INCLUDING ICONS====== -->
+        <div class="wrapper">
+            <h2 style="margin-top: 150px; color: white; font-size: 30px">
+                Get in Touch
+            </h2>
+            <div class="connect">
+                <!-- Social media links remain unchanged -->
+                <a href="https://twitter.com/i/flow/login?redirect_after_login=%2FEnjoyProgra" class="share twitter">
+                    <svg role="presentation" class="svg--icon">
+                        <use xlink:href="#svg--twitter" />
+                    </svg>
+                    <span class="clip">TWITTER</span>
+                </a>
+
+                <a href="https://www.google.com/search?gs_ssp=eJzj4tVP1zc0zDHKKTIoT043YLRSNagwTkoxMTU3NbVIMkszNTNJszKosDSxSDa0NEqzMEs0skwxSPMST83Lyq9UKCjKTy9KzM3NzEtXyE4syc8BAIL0GEY&q=enjoy+programming+katol&oq=enjoy&gs_lcrp=EgZjaHJvbWUqFQgBEC4YJxivARjHARiABBiKBRiOBTIPCAAQIxgnGOMCGIAEGIoFMhUIARAuGCcYrwEYxwEYgAQYigUYjgUyEQgCEEUYORhDGLEDGIAEGIoFMgYIAxBFGDwyBggEEEUYPDIGCAUQRRhBMgYIBhBFGEEyBggHEEUYQdIBCTE5MTY2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8"
+                    rel="author" class="share google">
+                    <svg role="presentation" class="svg--icon">
+                        <use xlink:href="#svg--google" />
+                        <span class="clip">GOOGLE +</span>
+                    </svg>
+                </a>
+
+                <a href="https://www.facebook.com/profile.php?id=61551450214007" rel="author" class="share facebook">
+                    <svg role="presentation" class="svg--icon">
+                        <use xlink:href="#svg--facebook" />
+                        <span class="clip">FACEBOOK</span>
+                    </svg>
+                </a>
+
+                <a href="https://www.instagram.com/enjoyprogramming2023/" class="share instagram">
+                    <svg role="presentation" class="svg--icon">
+                        <use xlink:href="#svg--instagram" />
+                        <span class="clip">INSTAGRAM</span>
+                    </svg>
+                </a>
+
+                <a href="https://whatsapp.com/channel/0029VaOlzUW3rZZjsxB6sW2w" class="share whatsapp">
+                    <svg role="presentation" class="svg--icon">
+                        <use xlink:href="#svg--whatsapp" />
+                        <span class="clip">whatsapp</span>
+                    </svg>
+                </a>
+
+                <a href="https://www.linkedin.com/in/enjoy-programming-43606b290/" class="share linkedin">
+                    <svg role="presentation" class="svg--icon">
+                        <use xlink:href="#svg--linkedin" />
+                        <span class="clip">Linkedin</span>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <a href="./enjoytwo.html">
+        <div class="button-title-wrapper button-ferro raise">
+            <h3 style="transform: matrix(1, 0, 0, 1, 0, 12.6406)">
+                <div class="loader">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <br />
+                Explore More →
+            </h3>
+        </div>
+    </a>
+    <!-- FUNCTIONALITY FOR BG IMAGE  -->
+    <div id="background-image"></div>
+    <video id="background-video" autoplay loop muted class="loaded">
+        <source src="./EP_video.mp4" type="video/mp4" />
+    </video>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuIcon = document.querySelector(".hamburger-menu");
+            const sidebar = document.querySelector(".sidebar");
+
+            function toggleMenu() {
+                sidebar.style.display = sidebar.style.display === "flex" ? "none" : "flex";
+            }
+
+            function handleResize() {
+                if (window.innerWidth <= 768) {
+                    menuIcon.style.display = "block";
+                    menuIcon.addEventListener("click", toggleMenu);
+                    sidebar.style.display = "none";
+                } else {
+                    menuIcon.style.display = "none";
+                    menuIcon.removeEventListener("click", toggleMenu);
+                    sidebar.style.display = "flex";
+                }
+            }
+
+            // Initial call to set correct state
+            handleResize();
+
+            // Listen for window resize
+            window.addEventListener('resize', handleResize);
+
+            // Background video loading
+            const backgroundVideo = document.getElementById("background-video");
+            const backgroundImage = document.getElementById("background-image");
+
+            backgroundVideo.addEventListener("loadeddata", function () {
+                backgroundVideo.classList.remove("loading");
+                backgroundVideo.classList.add("loaded");
+                backgroundImage.style.display = "none";
+            });
+
+            backgroundVideo.addEventListener("error", function () {
+                backgroundVideo.style.display = "none";
+                backgroundImage.style.display = "block";
+            });
+
+            // Slide out animation for next page button
+            const nextPageButton = document.querySelector(".button-title-wrapper");
+            nextPageButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                this.classList.add("slideOut");
+                setTimeout(() => {
+                    window.location.href = "./enjoytwo.html";
+                }, 100);
+            });
+        });
+
+        //new scripting
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Existing JavaScript code remains unchanged
+
+            // Dark/Light mode functionality
+            const lightModeBtn = document.getElementById('lightModeBtn');
+            const darkModeBtn = document.getElementById('darkModeBtn');
+            const body = document.body;
+
+            function setMode(mode) {
+                if (mode === 'dark') {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('mode', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('mode', 'light');
+                }
+            }
+
+            // Check for saved mode preference
+            const savedMode = localStorage.getItem('mode');
+            if (savedMode) {
+                setMode(savedMode);
+            }
+
+            lightModeBtn.addEventListener('click', () => setMode('light'));
+            darkModeBtn.addEventListener('click', () => setMode('dark'));
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            // ... existing code ...
+
+            // Select the contact button and collapsible content
+            const contactBtn = document.querySelector('.contact-btn');
+            const collapsibleContent = document.querySelector('.collapsible-content');
+
+            // Toggle the collapsible content on button click
+            contactBtn.addEventListener('click', function () {
+                collapsibleContent.classList.toggle('active');
+
+                if (collapsibleContent.classList.contains('active')) {
+                    collapsibleContent.style.maxHeight = collapsibleContent.scrollHeight + "px";
+                } else {
+                    collapsibleContent.style.maxHeight = "0";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
